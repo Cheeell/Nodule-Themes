@@ -1,0 +1,38 @@
+/*
+  Blueprint Theme — classic technical blueprint aesthetic.
+  Deep cobalt blue canvas with white chalk-line drawings,
+  grid paper texture, and engineering/drafting vibes.
+  Drop into your /themes folder and load via Settings → Appearance.
+*/
+
+:root {
+  --bg:               #1a3a6b;
+  --canvas:           #1e4080;
+  --grid:             #4a6fba;
+
+  --surface:          rgba(255, 255, 255, 0.06);
+  --surface-hover:    rgba(255, 255, 255, 0.11);
+  --border:           rgba(255, 255, 255, 0.22);
+  --border-strong:    rgba(255, 255, 255, 0.50);
+
+  --text:             #e8f0ff;
+  --text-muted:       #7faad8;
+
+  --accent:           #ffffff;
+  --accent-glow:      rgba(255, 255, 255, 0.20);
+
+  --node:             rgba(20, 50, 110, 0.90);
+  --node-header:      rgba(255, 255, 255, 0.08);
+  --scrollbar:        #3a65b0;
+
+  --bubble1:          linear-gradient(135deg, #ffffff, #dceeff);
+  --bubble2:          linear-gradient(135deg, #1a3a6b, #163260);
+
+  --btn-primary:      #0047AB;
+  --btn-primary-text: #e8f0ff;
+
+  --tooltip-bg:       rgba(14, 36, 80, 0.97);
+  --tooltip-text:     #e8f0ff;
+  --tooltip-border:   rgba(255, 255, 255, 0.28);
+  --tooltip-arrow:    rgba(14, 36, 80, 0.97);
+}

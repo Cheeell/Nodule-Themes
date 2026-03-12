@@ -1,0 +1,38 @@
+/*
+  Obsidian Theme — inspired by the Obsidian note-taking app.
+  Near-black background with warm orange accents, soft gray text,
+  and a graph-view aesthetic. Clean, focused, developer-friendly.
+  Drop into your /themes folder and load via Settings → Appearance.
+*/
+
+:root {
+  --bg:               #1a1a1a;
+  --canvas:           #161616;
+  --grid:             #222222;
+
+  --surface:          rgba(255, 255, 255, 0.04);
+  --surface-hover:    rgba(255, 255, 255, 0.08);
+  --border:           rgba(255, 255, 255, 0.09);
+  --border-strong:    rgba(255, 255, 255, 0.16);
+
+  --text:             #dcddde;
+  --text-muted:       #666e7a;
+
+  --accent:           #e8712a;
+  --accent-glow:      rgba(232, 113, 42, 0.30);
+
+  --node:             rgba(26, 26, 26, 0.95);
+  --node-header:      rgba(232, 113, 42, 0.06);
+  --scrollbar:        #2a2a2a;
+
+  --bubble1:          linear-gradient(135deg, #e8712a, #c45a1a);
+  --bubble2:          linear-gradient(135deg, #252525, #1e1e1e);
+
+  --btn-primary:      #e8712a;
+  --btn-primary-text: #ffffff;
+
+  --tooltip-bg:       rgba(22, 22, 22, 0.97);
+  --tooltip-text:     #dcddde;
+  --tooltip-border:   rgba(232, 113, 42, 0.22);
+  --tooltip-arrow:    rgba(22, 22, 22, 0.97);
+}

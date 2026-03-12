@@ -1,0 +1,41 @@
+/*
+  Sakura Theme — example custom theme for the app.
+  Place this file (and others) in a /themes folder,
+  then load them via Settings → Appearance → "Load themes from folder".
+
+  The filename (without .css) becomes the theme name shown in the selector.
+  Only define the variables you want to override — anything not listed
+  falls back to sensible defaults.
+*/
+
+:root {
+  --bg:               #1a0d12;
+  --canvas:           #160b0f;
+  --grid:             #26111a;
+
+  --surface:          rgba(255, 180, 200, 0.06);
+  --surface-hover:    rgba(255, 180, 200, 0.11);
+  --border:           rgba(255, 150, 180, 0.13);
+  --border-strong:    rgba(255, 150, 180, 0.24);
+
+  --text:             #f5d8e0;
+  --text-muted:       #a0687a;
+
+  --accent:           #e87ca0;
+  --accent-glow:      rgba(232, 124, 160, 0.35);
+
+  --node:             rgba(40, 14, 22, 0.82);
+  --node-header:      rgba(255, 150, 180, 0.05);
+  --scrollbar:        #4a1a28;
+
+  --bubble1:          linear-gradient(135deg, #3d1525, #2a0e1a);
+  --bubble2:          linear-gradient(135deg, #251020, #1a0b14);
+
+  --btn-primary:      #e87ca0;
+  --btn-primary-text: #1a0d12;
+
+  --tooltip-bg:       rgba(40, 14, 22, 0.95);
+  --tooltip-text:     #f5d8e0;
+  --tooltip-border:   rgba(255, 150, 180, 0.2);
+  --tooltip-arrow:    rgba(40, 14, 22, 0.95);
+}

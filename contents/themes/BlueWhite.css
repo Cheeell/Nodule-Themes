@@ -1,0 +1,37 @@
+/*
+  BlueWhite Theme — clean blue & white aesthetic.
+  Crisp white surfaces with cool blue accents and a deep navy canvas.
+  Drop into your /themes folder and load via Settings → Appearance.
+*/
+
+:root {
+  --bg:               #f0f4ff;
+  --canvas:           #e8eef8;
+  --grid:             #d4dff0;
+
+  --surface:          rgba(30, 80, 180, 0.06);
+  --surface-hover:    rgba(30, 80, 180, 0.11);
+  --border:           rgba(30, 80, 180, 0.13);
+  --border-strong:    rgba(30, 80, 180, 0.28);
+
+  --text:             #0d1a3a;
+  --text-muted:       #5a7aaa;
+
+  --accent:           #2563eb;
+  --accent-glow:      rgba(37, 99, 235, 0.28);
+
+  --node:             rgba(255, 255, 255, 0.92);
+  --node-header:      rgba(37, 99, 235, 0.06);
+  --scrollbar:        #b8cff0;
+
+  --bubble1:          linear-gradient(135deg, #1e40af, #2563eb);
+  --bubble2:          linear-gradient(135deg, #dbeafe, #eff6ff);
+
+  --btn-primary:      #2563eb;
+  --btn-primary-text: #ffffff;
+
+  --tooltip-bg:       rgba(255, 255, 255, 0.97);
+  --tooltip-text:     #0d1a3a;
+  --tooltip-border:   rgba(37, 99, 235, 0.18);
+  --tooltip-arrow:    rgba(255, 255, 255, 0.97);
+}
