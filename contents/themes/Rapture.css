@@ -1,0 +1,37 @@
+/*
+  Rapture Theme — inspired by the underwater city from BioShock.
+  Art Deco gold accents, deep ocean blues, and dim atmospheric lighting.
+*/
+
+:root {
+  --bg:               #0a1417;
+  --canvas:           #0f1d22;
+  --grid:             #16272d;
+
+  --surface:          rgba(20,40,45,0.65);
+  --surface-hover:    rgba(30,55,60,0.75);
+  --border:           rgba(180,150,80,0.18);
+  --border-strong:    rgba(200,170,90,0.35);
+
+  --text:             #e3e0d3;
+  --text-muted:       #9aa6a4;
+
+  --accent:           #c8a24a;
+  --accent-glow:      rgba(200,162,74,0.35);
+
+  --node:             rgba(14,26,30,0.92);
+  --node-header:      linear-gradient(180deg,#1b3940,#0f2328);
+
+  --scrollbar:        #3c4c4f;
+
+  --bubble1:          linear-gradient(135deg,#c8a24a,#e0c37a);
+  --bubble2:          linear-gradient(135deg,#162c31,#0f1d22);
+
+  --btn-primary:      #c8a24a;
+  --btn-primary-text: #1b1b1b;
+
+  --tooltip-bg:       rgba(15,25,28,0.96);
+  --tooltip-text:     #e3e0d3;
+  --tooltip-border:   rgba(200,162,74,0.22);
+  --tooltip-arrow:    rgba(15,25,28,0.96);
+}
