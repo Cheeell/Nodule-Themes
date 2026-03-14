@@ -1,0 +1,37 @@
+/*
+  Drift Garage Theme
+  Dark Japanese street racing garage aesthetic
+*/
+
+:root {
+  --bg:               #0f1113;
+  --canvas:           #14171a;
+  --grid:             #1b2024;
+
+  --surface:          rgba(255,255,255,0.04);
+  --surface-hover:    rgba(255,255,255,0.08);
+  --border:           rgba(255,255,255,0.08);
+  --border-strong:    rgba(255,255,255,0.16);
+
+  --text:             #e6e6e6;
+  --text-muted:       #8b949e;
+
+  --accent:           #ff2fa3;
+  --accent-glow:      rgba(255,47,163,0.35);
+
+  --node:             rgba(22,25,29,0.92);
+  --node-header:      linear-gradient(180deg,#2b2f36,#1c1f23);
+
+  --scrollbar:        #3a4046;
+
+  --bubble1:          linear-gradient(135deg,#ff2fa3,#ff6ac6);
+  --bubble2:          linear-gradient(135deg,#1c1f23,#2a2f36);
+
+  --btn-primary:      #ff2fa3;
+  --btn-primary-text: #ffffff;
+
+  --tooltip-bg:       rgba(20,22,25,0.95);
+  --tooltip-text:     #e6e6e6;
+  --tooltip-border:   rgba(255,255,255,0.1);
+  --tooltip-arrow:    rgba(20,22,25,0.95);
+}
