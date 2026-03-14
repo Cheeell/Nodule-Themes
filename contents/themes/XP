@@ -1,0 +1,37 @@
+/*
+  Windows XP Luna Theme
+  Classic Windows XP blue interface style.
+*/
+
+:root {
+  --bg:               #ece9d8;
+  --canvas:           #f6f3e6;
+  --grid:             #d8d3c4;
+
+  --surface:          rgba(0, 84, 227, 0.08);
+  --surface-hover:    rgba(0, 84, 227, 0.15);
+  --border:           rgba(0, 0, 128, 0.25);
+  --border-strong:    rgba(0, 0, 128, 0.45);
+
+  --text:             #000000;
+  --text-muted:       #3a3a3a;
+
+  --accent:           #245edb;
+  --accent-glow:      rgba(36, 94, 219, 0.35);
+
+  --node:             #ffffff;
+  --node-header:      linear-gradient(180deg,#3a6ff7,#245edb);
+
+  --scrollbar:        #c0c0c0;
+
+  --bubble1:          linear-gradient(180deg,#3a6ff7,#245edb);
+  --bubble2:          linear-gradient(180deg,#ffffff,#ece9d8);
+
+  --btn-primary:      #3a6ff7;
+  --btn-primary-text: #ffffff;
+
+  --tooltip-bg:       #ffffe1;
+  --tooltip-text:     #000000;
+  --tooltip-border:   #c0c0c0;
+  --tooltip-arrow:    #ffffe1;
+}
