@@ -1,0 +1,30 @@
+/* Aqua Terra Worldtimer Theme — titanium bezel, gunmetal dial,
+   globe motif. Two accent pips: GMT-red and indices-gold.
+   Drop into /themes · load via Settings → Appearance */
+
+:root {
+  --bg:               #1a1a1a;
+  --canvas:           #242424;
+  --grid:             #2e2e2e;
+  --surface:          rgba(255, 255, 255, 0.04);
+  --surface-hover:    rgba(255, 255, 255, 0.07);
+  --border:           rgba(200, 200, 200, 0.12);
+  --border-strong:    rgba(200, 200, 200, 0.30);
+  --text:             #e2e2e2;
+  --text-muted:       #888888;
+  --accent:           #c9a84c;    ← indices gold
+  --accent-glow:      rgba(201, 168, 76, 0.16);
+  --node:             rgba(18, 18, 18, 0.94);
+  --node-header:      rgba(255, 255, 255, 0.05);
+  --scrollbar:        #555555;
+  --bubble1:          linear-gradient(135deg, #4a4a4a, #3d3d3d);
+  --bubble2:          linear-gradient(135deg, #1a1a1a, #141414);
+  --btn-primary:      #3d3d3d;
+  --btn-primary-text: #e2e2e2;
+  --tooltip-bg:       rgba(10, 10, 10, 0.97);
+  --tooltip-text:     #e2e2e2;
+  --tooltip-border:   rgba(200, 200, 200, 0.18);
+  --tooltip-arrow:    rgba(10, 10, 10, 0.97);
+    /* unique — GMT hand pip */
+  --gmt-pip:          #c0392b;
+}
