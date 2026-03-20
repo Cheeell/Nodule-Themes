@@ -1,0 +1,28 @@
+/* Winter Forest Theme — inspired by snow-laden alpine conifers.
+   Misty steel-blue canvas, icy accent, deep shadow backgrounds.
+   Drop into /themes · load via Settings → Appearance */
+
+:root {
+  --bg:               #0d1a24;
+  --canvas:           #111f2b;
+  --grid:             #1e3040;
+  --surface:          rgba(255, 255, 255, 0.04);
+  --surface-hover:    rgba(255, 255, 255, 0.08);
+  --border:           rgba(180, 210, 230, 0.14);
+  --border-strong:    rgba(180, 210, 230, 0.38);
+  --text:             #d4e8f0;
+  --text-muted:       #6a96b0;
+  --accent:           #a8d4e8;
+  --accent-glow:      rgba(168, 212, 232, 0.18);
+  --node:             rgba(12, 28, 42, 0.92);
+  --node-header:      rgba(168, 212, 232, 0.07);
+  --scrollbar:        #2a4a60;
+  --bubble1:          linear-gradient(135deg, #c8e8f4, #e8f4fb);
+  --bubble2:          linear-gradient(135deg, #0d1a24, #0a1520);
+  --btn-primary:      #1a6080;
+  --btn-primary-text: #d4e8f0;
+  --tooltip-bg:       rgba(8, 18, 28, 0.97);
+  --tooltip-text:     #d4e8f0;
+  --tooltip-border:   rgba(168, 212, 232, 0.26);
+  --tooltip-arrow:    rgba(8, 18, 28, 0.97);
+}
