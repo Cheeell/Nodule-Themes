@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reminders</title>
+
+<script type="application/json" id="widgetMeta">
+{
+  "name": "Remember",
+  "version": "2.1",
+  "author": "Korvo",
+  "coverImage": "https://eblo.id/uploads/v4eRodW/Screenshot%202026-04-02%20at%2018.09.46.opt.webp",
+  "tags": ["Productivity", "Todo", "Tasks","Dark"],
+  "description": "Minimal dark todo widget inspired by Resend's aesthetic — pure black, clean Inter typography.",
+  "releaseDate": "2026-04-01",
+  "license": "MIT"
+}
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: transparent;
+}
+
+:root {
+  --bg:         #0a0a0a;
+  --surface:    rgba(255,255,255,0.05);
+  --border:     rgba(255,255,255,0.10);
+  --text:       #ededed;
+  --text-muted: #555;
+  --accent:     #ededed;
+}
+
+.window {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 0 1px #000, 0 24px 80px rgba(0,0,0,0.8);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+/* titlebar */
+.titlebar {
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  transition: border-color 0.3s;
+}
+
+.title {
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.btn-add {
+  margin-left: auto;
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  padding-bottom: 1px;
+}
+.btn-add:hover { border-color: rgba(255,255,255,0.3); color: var(--text); }
+
+/* completed bar */
+.comp-bar {
+  height: 32px; flex-shrink: 0;
+  display: flex; align-items: center;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  gap: 8px;
+  transition: border-color 0.3s, color 0.3s;
+}
+.comp-badge {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0 7px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  min-width: 20px;
+  text-align: center;
+  line-height: 18px;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+
+/* task list */
+.task-list {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.task-list::-webkit-scrollbar { width: 4px; }
+.task-list::-webkit-scrollbar-track { background: transparent; }
+.task-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* task row */
+.task-row {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  position: relative;
+  transition: background 0.1s;
+}
+.task-row:hover { background: var(--surface); }
+.task-row:hover .del-btn { opacity: 1; }
+
+/* checkbox */
+.chk {
+  width: 16px; height: 16px; flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  margin-right: 12px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.chk:hover { border-color: rgba(255,255,255,0.4); }
+.chk.on { background: var(--text); border-color: var(--text); }
+.chk.on::after {
+  content: '';
+  display: block;
+  width: 8px; height: 4.5px;
+  border-left: 1.5px solid var(--bg);
+  border-bottom: 1.5px solid var(--bg);
+  transform: rotate(-45deg) translateY(-1px);
+}
+
+/* text */
+.task-text {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text);
+  outline: none;
+  line-height: 1.5;
+  word-break: break-word;
+  caret-color: var(--text);
+  transition: color 0.3s;
+}
+.task-text.done { text-decoration: line-through; color: var(--text-muted); }
+.task-text:empty:before { content: attr(placeholder); color: var(--text-muted); opacity: 0.5; }
+
+.task-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  transition: color 0.3s;
+}
+
+/* delete */
+.del-btn {
+  opacity: 0;
+  width: 18px; height: 18px; flex-shrink: 0;
+  border-radius: 4px; border: none;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  margin-left: 8px;
+  transition: background 0.1s, color 0.1s, opacity 0.15s;
+}
+.del-btn:hover { background: rgba(224,85,85,0.15); color: #e05555; }
+
+/* inline input row */
+.input-row {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.add-input {
+  flex: 1;
+  border: none; background: transparent;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--text);
+  outline: none;
+  margin-left: 12px;
+  caret-color: var(--text);
+}
+.add-input::placeholder { color: var(--text-muted); opacity: 0.6; }
+
+/* empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.3;
+}
+</style>
+</head>
+<body>
+<div class="window">
+
+  <div class="titlebar">
+    <span class="title">Reminders</span>
+    <button class="btn-add" id="btnAdd">+</button>
+  </div>
+
+  <div class="comp-bar">
+    <span class="comp-badge" id="compCount">0</span> Completed
+  </div>
+
+  <div class="task-list" id="taskList">
+    <div class="empty-state" id="emptyState">
+      <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      No reminders yet
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── Theme sync via postMessage ────────────────────────────────
+window.addEventListener('message', function(e) {
+  if (!e.data || e.data.type !== 'nodule-theme') return;
+  var c = e.data.colors;
+  var r = document.documentElement;
+  if (c.bg)        r.style.setProperty('--bg',         c.bg);
+  if (c.surface)   r.style.setProperty('--surface',    c.surface);
+  if (c.border)    r.style.setProperty('--border',     c.border);
+  if (c.text)      r.style.setProperty('--text',       c.text);
+  if (c.textMuted) r.style.setProperty('--text-muted', c.textMuted);
+  if (c.accent)    r.style.setProperty('--accent',     c.accent);
+});
+
+// ── App logic ─────────────────────────────────────────────────
+var taskList   = document.getElementById('taskList');
+var btnAdd     = document.getElementById('btnAdd');
+var compCount  = document.getElementById('compCount');
+var emptyState = document.getElementById('emptyState');
+
+function countDone() {
+  compCount.textContent = taskList.querySelectorAll('.chk.on').length;
+  var hasTasks = taskList.querySelectorAll('.task-row').length > 0;
+  emptyState.style.display = hasTasks ? 'none' : 'flex';
+}
+
+function makeEmptyChk() {
+  var chk = document.createElement('div');
+  chk.className = 'chk';
+  chk.style.opacity = '0.4';
+  chk.style.cursor = 'default';
+  return chk;
+}
+
+var inputRow = document.createElement('div');
+inputRow.className = 'input-row';
+inputRow.style.display = 'none';
+
+var inputChk = makeEmptyChk();
+var addInput = document.createElement('input');
+addInput.className = 'add-input';
+addInput.placeholder = 'New reminder…';
+addInput.type = 'text';
+
+inputRow.appendChild(inputChk);
+inputRow.appendChild(addInput);
+
+function showInputRow() {
+  var rows = taskList.querySelectorAll('.task-row');
+  var insertBefore = null;
+  for (var i = 0; i < rows.length; i++) {
+    if (rows[i].querySelector('.chk.on')) { insertBefore = rows[i]; break; }
+  }
+  if (insertBefore) {
+    taskList.insertBefore(inputRow, insertBefore);
+  } else {
+    taskList.appendChild(inputRow);
+  }
+  inputRow.style.display = 'flex';
+  addInput.value = '';
+  addInput.focus();
+}
+
+function hideInputRow() {
+  inputRow.style.display = 'none';
+  addInput.value = '';
+}
+
+function makeRow(text, sub) {
+  var row = document.createElement('div');
+  row.className = 'task-row';
+
+  var chk = document.createElement('div');
+  chk.className = 'chk';
+  chk.onclick = function() {
+    var on = chk.classList.toggle('on');
+    label.className = on ? 'task-text done' : 'task-text';
+    countDone();
+    var rows = Array.from(taskList.querySelectorAll('.task-row'));
+    rows.forEach(function(r) { taskList.removeChild(r); });
+    var active = rows.filter(function(r) { return !r.querySelector('.chk.on'); });
+    var done   = rows.filter(function(r) { return  r.querySelector('.chk.on'); });
+    active.concat(done).forEach(function(r) { taskList.appendChild(r); });
+    if (inputRow.style.display !== 'none') {
+      var firstDone = taskList.querySelector('.task-row .chk.on');
+      if (firstDone) taskList.insertBefore(inputRow, firstDone.closest('.task-row'));
+      else taskList.appendChild(inputRow);
+    }
+  };
+
+  var labelWrap = document.createElement('div');
+  labelWrap.style.cssText = 'flex:1;min-width:0;';
+
+  var label = document.createElement('div');
+  label.className = 'task-text';
+  label.contentEditable = 'true';
+  label.textContent = text;
+  label.onkeydown = function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); label.blur(); }
+  };
+  label.onblur = function() {
+    if (!label.textContent.trim()) { row.remove(); countDone(); }
+  };
+  labelWrap.appendChild(label);
+
+  if (sub) {
+    var subEl = document.createElement('div');
+    subEl.className = 'task-sub';
+    subEl.textContent = sub;
+    labelWrap.appendChild(subEl);
+  }
+
+  var del = document.createElement('button');
+  del.className = 'del-btn';
+  del.textContent = '×';
+  del.onmousedown = function(e) { e.preventDefault(); };
+  del.onclick = function() { row.remove(); countDone(); };
+
+  row.appendChild(chk);
+  row.appendChild(labelWrap);
+  row.appendChild(del);
+  return row;
+}
+
+countDone();
+
+btnAdd.onclick = function() {
+  if (inputRow.style.display === 'none') {
+    showInputRow();
+  } else {
+    hideInputRow();
+  }
+};
+
+addInput.onkeydown = function(e) {
+  if (e.key === 'Escape') { hideInputRow(); return; }
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    var val = addInput.value.trim();
+    if (val !== '') {
+      var newRow = makeRow(val, '');
+      taskList.insertBefore(newRow, inputRow);
+      addInput.value = '';
+      countDone();
+    }
+  }
+};
+
+addInput.onblur = function() {
+  setTimeout(function() {
+    if (document.activeElement !== addInput && addInput.value.trim() === '') {
+      hideInputRow();
+    }
+  }, 200);
+};
+</script>
+</body>
+</html>
